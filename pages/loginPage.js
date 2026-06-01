@@ -1,5 +1,5 @@
 
-import { test } from '../fixtures/testSetup.js';
+import { test } from '../fixtures/testLoginSetup.js';
 import { attachStepScreenshot } from '../utilities/screenshot.js';
 
 class LoginPage {
