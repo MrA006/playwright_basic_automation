@@ -1,15 +1,25 @@
 import {test, expect} from "@playwright/test";
+import users from '../testData/loginData.json';
 
-test('login test functionality', async ({page}) => {
+let i = 0;
 
-    await page.goto ( 'https://www.adactinhotelapp.com/');
+users.data.forEach(user => {
 
-    await page.fill('#username', 'haristester01');
-    await page.fill('#password', 'haristester01');
-
-    await page.click('#login');
-
-
-    await expect(page.locator('.welcome_menu').first()).toHaveText('Welcome to Adactin Group of Hotels');
-
+    
+    test(`login test functionality for ${user.username} + ${i++}`, async ({page}) => {
+        
+        await page.goto ( 'https://www.adactinhotelapp.com/');
+        
+        const username = user.username;
+        const password = user.password;
+        
+        await page.fill('#username', username);
+        await page.fill('#password', password);
+        
+        await page.click('#login');
+        
+        
+        await expect(page.locator('.welcome_menu').first()).toHaveText('Welcome to Adactin Group of Hotels');
+        
+    })
 })
