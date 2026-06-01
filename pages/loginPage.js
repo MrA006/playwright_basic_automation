@@ -1,5 +1,6 @@
 
-import { test } from '@playwright/test';
+import { test } from '../fixtures/testSetup.js';
+import { attachStepScreenshot } from '../utilities/screenshot.js';
 
 class LoginPage {
     constructor(page){
@@ -17,22 +18,14 @@ class LoginPage {
 
     async goToUrl(){
         await this.page.goto ( 'https://www.adactinhotelapp.com/');
-        await this.attachScreenshot('Step 01 - navigate to login page');
+        await attachStepScreenshot(this.page, '01 - After URL open');
     }
 
     async login(username, password){
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
-        await this.attachScreenshot('Step 02 - submit login credentials');
-    }
-
-    async attachScreenshot(){
-
-        await test.info().attach('screenshot',{
-            body: await this.page.screenshot(),
-            contentType: 'image/png'
-        })
+        await attachStepScreenshot(this.page, '02 - After submitting login credentials');
     }
 
 

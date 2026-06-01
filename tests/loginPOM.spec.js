@@ -1,6 +1,7 @@
-import {test, expect} from "@playwright/test";
-import LoginPage from '../pages/loginPage.js';
-import users from '../testData/loginData.json';
+import { test, expect } from '../fixtures/testSetup.js';
+import users from '../testdata/loginData.json' assert { type: 'json' };
+import LoginPage from '../pages/LoginPage.js';
+// import { attachStepScreenshot } from '../utilities/screenshot.js';
 
 let i = 0;
 
